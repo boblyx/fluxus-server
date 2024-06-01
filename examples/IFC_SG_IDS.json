@@ -1,0 +1,29 @@
+{
+    "requirements": [
+        {
+            "name": "Example",
+            "uri": "https://code.builtsearch.com/standards/ifcsg",
+            "for": [
+                {
+                    "ifcType": "IfcSite"
+                }
+            ],
+            "propertySets":[
+                {
+                    "name": "WorkingLoad_DA1-1"
+                    ,"type": "integer"
+                    ,"required": "true"
+                    ,"unit": "kN"
+                    ,"description": "Working load of the wall in kN."
+                },
+                {
+                    "name": "WorkingLoad_DA1-1"
+                    ,"type": "integer"
+                    ,"required": "true"
+                    ,"unit": "kN"
+                    ,"description": "Working load of the wall in kN."
+                }
+            ]
+        }
+    ]
+}

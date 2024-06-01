@@ -1,0 +1,5 @@
+python-dotenv
+fastAPI
+uvicorn
+ifcopenshell
+ifctester

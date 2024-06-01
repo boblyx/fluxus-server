@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ids:ids xmlns:ids="http://standards.buildingsmart.org/IDS" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://standards.buildingsmart.org/IDS 
+    http://standards.buildingsmart.org/IDS/0.9.7/ids.xsd">
+    <ids:info>
+        <ids:title>IFC-SG Wall Test</ids:title>
+    </ids:info>
+    <ids:specifications>
+        <ids:specification ifcVersion="IFC4" name="IFC-SG Wall Requirement" description="Test">
+            <ids:applicability>
+                <ids:entity>
+                    <ids:name>
+                        <ids:simpleValue>IFCWALL</ids:simpleValue>
+                    </ids:name>
+                </ids:entity>
+            </ids:applicability>
+            <ids:requirements>
+
+                <ids:property datatype="IFCFORCEMEASURE">
+                    <ids:propertySet>
+                        <ids:simpleValue>SGPset_WallStructuralLoad</ids:simpleValue>
+                    </ids:propertySet>
+                    <ids:name>  
+                        <ids:simpleValue>WorkingLoad_DA1-1</ids:simpleValue>
+                    </ids:name>
+                    <ids:value>
+                        <xs:restriction base="xs:double">
+                        </xs:restriction>
+                    </ids:value>
+                </ids:property>
+
+                <ids:property datatype="IFCFORCEMEASURE">
+                    <ids:propertySet>
+                        <ids:simpleValue>SGPset_WallStructuralLoad</ids:simpleValue>
+                    </ids:propertySet>
+                    <ids:name>  
+                        <ids:simpleValue>WorkingLoad_DA1-2</ids:simpleValue>
+                    </ids:name>
+                    <ids:value>
+                        <xs:restriction base="xs:double">
+                        </xs:restriction>
+                    </ids:value>
+                </ids:property>
+
+            </ids:requirements>
+        </ids:specification>
+    </ids:specifications>
+</ids:ids>
