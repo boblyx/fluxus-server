@@ -7,8 +7,12 @@
 - This filtered method of dealing with the model will allow checking to be parallelised and potentially faster
 - User will be required to share a Revit Property Mapping to allow fixes to be pushed to the Speckle Stream
 
+## Tasks
+- [x] POC for IFC models uploaded to Speckle
+- [ ] POC for Revit models in Speckle + Mapping doc
+
 ## Workflows
-### <IDS-1> IDS check for 1x specification
+### [IDS-1] IDS check for 1x specification
 - Payload:
     - `ids`: IDS specification (.xml/.ids)
     - `speckle`: Speckle Info

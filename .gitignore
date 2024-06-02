@@ -1,3 +1,5 @@
 venv
-**/pycache/*
+**/__pycache__/*
 **/venv/*
+out/*
+!out/.gitignore
