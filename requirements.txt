@@ -3,3 +3,5 @@ fastAPI
 uvicorn
 ifcopenshell
 ifctester
+specklepy
+gql

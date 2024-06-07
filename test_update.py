@@ -15,10 +15,14 @@ import os
 from pprint import pprint
 SAMPLE_MAPPING = os.path.join(os.getcwd(), "examples", "RevitMapping.txt")
 
-def parseProperty(string):
+def parsePropertySet(string):
     prop_arr = string.split("\t")
     if(len(prop_arr) != 4):
         return None
+    return prop_arr
+
+def parseProperty(string):
+    prop_arr = string.split("\t")
     return prop_arr
 
 def parseRevitMapping(path):
@@ -30,25 +34,34 @@ def parseRevitMapping(path):
         text = f.read()
         pass
     seq = re.compile('(^[^#].*)', re.MULTILINE)
-    in_prop = False
     prop_sets = {}
+    current_pset = ""
     for match in seq.finditer(text):
         invalid = True
         text = match.groups()[0]
         cleaned = text.replace("\n", "")
         cleaned = cleaned.replace(" ", "")
         cleaned = cleaned.split("#")[0]
-        if("PropertySet" in cleaned and not in_prop):
+        propset_arr = None
+        if("PropertySet" in cleaned):
+            propset_arr = parsePropertySet(cleaned)
+            if propset_arr == None: 
+                current_pset = ""
+                continue 
+            current_pset = propset_arr[1]
+            prop_sets[current_pset] = {}
+            pass
+        if current_pset == "": continue
+        if(cleaned[0:1] == "\t"):
             prop_arr = parseProperty(cleaned)
-            if prop_arr == None: continue 
-            in_prop = True
+            if prop_arr == None: continue
+            prop_sets[current_pset].update(
+                {"ifc": prop_arr[1], "other": prop_arr[3], "type": prop_arr[2]}
+            )
             pass
-        if(cleaned[0] == "\t" and in_prop == True):
-            
-            pass
-        pprint(cleaned)
-    pass
+    return prop_sets
 
 if __name__ == "__main__":
-    parseRevitMapping(SAMPLE_MAPPING)
+    prop_sets = parseRevitMapping(SAMPLE_MAPPING)
+    pprint(prop_sets);
     pass
