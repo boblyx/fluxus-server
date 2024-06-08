@@ -14,6 +14,7 @@ from .facets import validateProperty
 
 from specklepy.api.client import SpeckleClient
 import ifctester
+from pprint import pprint
 
 class Validator:
     """
@@ -43,11 +44,18 @@ class Validator:
         objects = Speckle.getObjPsets(client, entity.name, pset, speckle_info)
         for o in objects:
             o_id = o["data"]["id"]
+            #pprint(o["data"])
             result = validateProperty(o, requirement)
+            prop_val = None
             if not o_id in results:
                 results[o_id] = {requirement.baseName: result.__dict__}
             else:
                 results[o_id][requirement.baseName] = result.__dict__
+        
+            if o["data"][requirement.propertySet] != None: 
+                prop_val = o["data"][requirement.propertySet][requirement.baseName]
+            results[o_id][requirement.baseName]["value"] = prop_val
+            results[o_id][requirement.baseName]["dataType"] = requirement.dataType
             pass
         return results
 
