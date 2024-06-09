@@ -22,7 +22,7 @@ import uvicorn
 sys.path.append(os.path.join(os.getcwd(), "packages"))
 
 from API import Speckle
-from API.Speckle import SpeckleInfo
+from API.Speckle import SpeckleInfo, updateObjectParams
 from specklepy.api.client import SpeckleClient
 from fluxus_ifc.validation import Validator
 
@@ -48,6 +48,24 @@ def root():
     """ Returns health
     """
     return "HEALTHY"
+
+@router.post("/api/v1/update_obj")
+def update_obj(speckle: str = "app.speckle.systems",
+               stream: str = "ae5477e163", 
+               obj: str = "03b551dfdfbc243a817ef17538835744", 
+               access_code: str = "",
+               branch_name : str = "main",
+               update_data : dict = {
+                    "SGPset_WallStructuralLoad": {
+                        "WorkingLoad_DA1-1": 20
+                        }
+                   }):
+
+    client = SpeckleClient(host = speckle)
+    speckle_info = SpeckleInfo(stream, obj, access_code)
+    client.authenticate_with_token(access_code)
+    res = updateObjectParams(client, update_data, speckle_info, branch_name)
+    return res
 
 @router.post("/api/v1/validate_spec")
 def validate_spec(speckle: str = "app.speckle.systems",
